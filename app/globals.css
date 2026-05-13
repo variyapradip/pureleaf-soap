@@ -250,6 +250,7 @@ header {
   color: var(--white);
   text-align: center;
   font-size: 4rem;
+  line-height: 75px;
   margin: 0 auto;
   /* background-color: var(--gray); */
   max-width: 800px;
@@ -296,9 +297,130 @@ header {
 
 /* Footer-css-start */
 
-.footer{
-  height: 300px;
-  background-color: var(--gray);
+.footer {
+  background: #1f1f1f;
+  color: #fff;
+  padding: 80px 0 30px;
+}
+
+.container {
+  width: 90%;
+  max-width: 1400px;
+  margin: auto;
+}
+
+.footer_top {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+  gap: 60px;
+  padding-bottom: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer_brand p {
+  margin-top: 24px;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.7);
+}
+
+.footer_links {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer_links h4,
+.footer_newsletter h4 {
+  margin-bottom: 24px;
+  font-size: 22px;
+}
+
+.footer_links a {
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 14px;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer_links a:hover {
+  color: #fff;
+}
+
+.footer_newsletter p {
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+
+.newsletter_form {
+  display: flex;
+  gap: 12px;
+}
+
+.newsletter_form input {
+  flex: 1;
+  height: 52px;
+  border: none;
+  padding: 0 18px;
+  outline: none;
+}
+
+.newsletter_form button {
+  padding: 0 24px;
+  border: none;
+  cursor: pointer;
+  background: #d8b08c;
+  color: #fff;
+}
+
+.footer_bottom {
+  padding-top: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer_bottom p {
+  color: rgba(255,255,255,0.6);
+}
+
+.footer_social {
+  display: flex;
+  gap: 24px;
+}
+
+.footer_social a {
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+}
+
+.footer_social a:hover {
+  color: #fff;
+}
+
+@media(max-width: 991px) {
+
+  .footer_top {
+      grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+@media(max-width: 767px) {
+
+  .footer_top {
+      grid-template-columns: 1fr;
+  }
+
+  .footer_bottom {
+      flex-direction: column;
+      gap: 20px;
+      text-align: center;
+  }
+
+  .newsletter_form {
+      flex-direction: column;
+  }
+
 }
 /* Footer-css-start */
 
