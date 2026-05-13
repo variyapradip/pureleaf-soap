@@ -1,42 +1,50 @@
 'use client';
 
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
-function Banner() {
+export default function Banner() {
     return (
-        <section className="hero_banner">
-            <div className="hero_content">
-                <span className="hero_subtitle">
-                    Handmade Herbal Soap
-                </span>
+        <section className="main_banner">
+            {/* Banner Image */}
+            <Image
+                src="/images/banner2.png"
+                alt="soap banner"
+                width={1920}
+                height={900}
+                priority
+                className="banner_img"
+            />
 
-                <h1 className="hero_title">
-                    Pure Nature <br /> For Your Skin
+            {/* Banner Content */}
+            <motion.div
+                initial={{ opacity: 0, y: 80 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: 'easeOut' }}
+                className="main_banner-content"
+            >
+                <h1>
+                    Handcrafted Herbal Soaps for Gentle,
+                    Natural Skin Care
                 </h1>
 
-                <p className="hero_text">
-                    Discover handmade herbal soaps crafted with
-                    aloe vera, turmeric, neem, and natural oils
-                    for healthy glowing skin.
+                <p>
+                    A collection of handcrafted herbal soaps
+                    for radiant, healthy skin
                 </p>
 
-                <button className="hero_btn">
-                    Shop Collection
-                </button>
-            </div>
+                <button>
+                    Discover Your Glow
 
-            <div className="hero_image">
-                <Image
-                    src="/images/pureleafsoap.png"
-                    width={500}
-                    height={500}
-                    alt="PureLeaf Soap"
-                    priority
-                    className="banner_img"
-                />
-            </div>
+                    <Image
+                        className="arrow_icon"
+                        src="/images/right-arrow.png"
+                        alt="arrow icon"
+                        width={18}
+                        height={18}
+                    />
+                </button>
+            </motion.div>
         </section>
     );
 }
-
-export default Banner;

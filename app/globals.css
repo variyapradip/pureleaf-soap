@@ -5,6 +5,11 @@
   --white: #FFFFFF;
 }
 
+body{
+  padding: 0;
+  margin: 0;
+}
+
 /* Heade-css-start */
 
 header {
@@ -15,7 +20,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: stretch;
   display: grid;
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
@@ -204,6 +209,7 @@ header {
 
 .main_logo img {
   filter: invert(1);
+  height: fit-content;
 }
 
 /* Heade-css-end */
