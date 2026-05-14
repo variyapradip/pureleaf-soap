@@ -12,7 +12,10 @@ import {
     doc,
     getDoc,
     collection,
-    addDoc
+    addDoc,
+    query,
+    where,
+    getDocs
 } from 'firebase/firestore';
 
 function Footer() {
@@ -23,7 +26,6 @@ function Footer() {
 
     const [message, setMessage] = useState('');
 
-    // Fetch Footer Data
     useEffect(() => {
 
         const fetchFooter = async () => {
@@ -55,7 +57,6 @@ function Footer() {
 
     }, []);
 
-    // Subscribe Function
     const handleSubscribe = async (e) => {
 
         e.preventDefault();
@@ -67,18 +68,47 @@ function Footer() {
             );
 
             return;
+        }
 
+        const emailRegex =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(email)) {
+
+            setMessage(
+                'Please enter valid email'
+            );
+
+            return;
         }
 
         try {
 
+            const q = query(
+                collection(db, 'subscribers'),
+                where(
+                    'email',
+                    '==',
+                    email.toLowerCase()
+                )
+            );
+
+            const querySnapshot =
+                await getDocs(q);
+
+            if (!querySnapshot.empty) {
+
+                setMessage(
+                    'Email already subscribed'
+                );
+
+                return;
+            }
+
             await addDoc(
-                collection(
-                    db,
-                    'subscribers'
-                ),
+                collection(db, 'subscribers'),
                 {
-                    email: email,
+                    email: email.toLowerCase(),
                     createdAt: new Date()
                 }
             );
@@ -107,7 +137,6 @@ function Footer() {
 
                 <div className="footer_top">
 
-                    {/* Logo */}
                     <div className="footer_brand">
 
                         {footer?.logo && (
@@ -127,7 +156,6 @@ function Footer() {
 
                     </div>
 
-                    {/* Quick Links */}
                     <div className="footer_links">
 
                         <h4>
@@ -149,7 +177,6 @@ function Footer() {
 
                     </div>
 
-                    {/* Collections */}
                     <div className="footer_links">
 
                         <h4>
@@ -171,7 +198,6 @@ function Footer() {
 
                     </div>
 
-                    {/* Newsletter */}
                     <div className="footer_newsletter">
 
                         <h4>
