@@ -1,5 +1,7 @@
 import "./globals.css";
 import { Toaster } from 'react-hot-toast';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 
 import {
     Poppins,
@@ -59,7 +61,9 @@ export default function RootLayout({ children }) {
         >
             <body>
             <Toaster />
-                {children}
+            <Header />
+            {children}
+            <Footer />
             </body>
         </html>
     );

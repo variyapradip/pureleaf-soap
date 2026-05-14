@@ -1,15 +1,19 @@
-import Header from '@/components/Header';
-import Banner from '../components/home/Banner';
-import Footer from '../components/Footer';
 
+import Banner from '../components/home/Banner';
+
+import FeaturedCollections from '../components/home/FeaturedCollections';
 
 
 export default function Home() {
+
     return (
+
         <>
-            <Header />
             <Banner />
-            <Footer />
+
+            <FeaturedCollections />
+
         </>
+
     );
 }

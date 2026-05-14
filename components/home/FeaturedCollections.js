@@ -20,15 +20,15 @@ import {
 
 import { db } from '@/firebase/firebase';
 
-function CollectionsPage() {
+function FeaturedCollections() {
 
-    const [collections, setCollections] =
+    const [products, setProducts] =
         useState([]);
 
     // FETCH COLLECTIONS
     useEffect(() => {
 
-        const fetchCollections =
+        const fetchProducts =
             async () => {
 
                 try {
@@ -57,7 +57,7 @@ function CollectionsPage() {
 
                     });
 
-                    setCollections(data);
+                    setProducts(data);
 
                 } catch (error) {
 
@@ -66,23 +66,17 @@ function CollectionsPage() {
                 }
             };
 
-        fetchCollections();
+        fetchProducts();
 
     }, []);
 
     // ADD TO CART
     const handleAddToCart =
-        async (
-            e,
-            product
-        ) => {
-
-            // STOP LINK CLICK
-            e.preventDefault();
+        async (product) => {
 
             try {
 
-                // CHECK PRODUCT ALREADY EXISTS
+                // CHECK PRODUCT IN CART
                 const q = query(
 
                     collection(
@@ -125,7 +119,6 @@ function CollectionsPage() {
 
                             {
                                 icon: '⚠️',
-
                                 style: {
                                     borderRadius: '12px',
                                     background: '#fff7ed',
@@ -165,7 +158,7 @@ function CollectionsPage() {
                 // NEW PRODUCT
                 else {
 
-                    // STOCK CHECK
+                    // OUT OF STOCK CHECK
                     if (
                         Number(product.stock) <= 0
                     ) {
@@ -176,7 +169,6 @@ function CollectionsPage() {
 
                             {
                                 icon: '⚠️',
-
                                 style: {
                                     borderRadius: '12px',
                                     background: '#fff7ed',
@@ -204,8 +196,8 @@ function CollectionsPage() {
                             price: product.price,
                             image: product.image,
                             slug: product.slug,
-                            stock: product.stock,
-                            quantity: 1
+                            quantity: 1,
+                            stock: product.stock
                         }
 
                     );
@@ -229,74 +221,79 @@ function CollectionsPage() {
 
     return (
 
-        <section className="collections_page">
+        <section className="featured_collections">
 
             <div className="container">
 
-                {/* HEADING */}
+                {/* SECTION TITLE */}
                 <div className="section_heading">
 
-                    <h1>
-                        Herbal Soap Collections
-                    </h1>
+                    <span>
+                        Our Collection
+                    </span>
+
+                    <h2>
+                        Featured Herbal Soaps
+                    </h2>
 
                     <p>
-                        Explore our natural handmade soap collections.
+                        Handmade herbal soaps crafted with natural ingredients for healthy glowing skin.
                     </p>
 
                 </div>
 
-                {/* COLLECTION GRID */}
-                <div className="collections_grid">
+                {/* PRODUCTS */}
+                <div className="featured_grid">
 
-                    {collections.map((item) => (
+                    {products.map((item) => (
 
-                        <Link
+                        <div
                             key={item.id}
-                            href={`/collections/${item.slug}`}
-                            className="collection_card"
+                            className="featured_card"
                         >
 
                             {/* IMAGE */}
-                            <div className="collection_img">
+                            <Link
+                                href={`/collections/${item.slug}`}
+                                className="featured_img"
+                            >
 
                                 <Image
                                     src={item.image}
                                     alt={item.title}
                                     width={500}
                                     height={500}
-                                    className="img-fluid"
                                 />
 
-                            </div>
+                            </Link>
 
                             {/* CONTENT */}
-                            <div className="collection_content">
+                            <div className="featured_content">
 
                                 <h3>
                                     {item.title}
                                 </h3>
 
                                 <p>
-                                    {item.description}
+                                    ₹ {item.price}
                                 </p>
 
-                                <h4>
-                                    ₹ {item.price}
-                                </h4>
+                                {/* STOCK */}
+                                <span className="stock_text">
 
-                              
+                                    Stock:
+                                    {' '}
+                                    {item.stock}
 
-                                {/* BUTTONS */}
-                                <div className="collection_btns">
+                                </span>
+
+                                {/* BUTTON */}
+                                <div className="featured_btns">
 
                                     <button
                                         className="cart_btn"
-                                        onClick={(e) =>
-                                            handleAddToCart(
-                                                e,
-                                                item
-                                            )
+                                        onClick={() =>
+                                            handleAddToCart(item)
                                         }
                                     >
                                         Add To Cart
@@ -306,7 +303,7 @@ function CollectionsPage() {
 
                             </div>
 
-                        </Link>
+                        </div>
 
                     ))}
 
@@ -318,4 +315,4 @@ function CollectionsPage() {
     );
 }
 
-export default CollectionsPage;
+export default FeaturedCollections;

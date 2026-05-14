@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 import Image from 'next/image';
 
+import toast from 'react-hot-toast';
+
 import {
     motion,
     AnimatePresence
@@ -14,7 +16,10 @@ import {
     onSnapshot,
     updateDoc,
     deleteDoc,
-    doc
+    doc,
+    getDocs,
+    query,
+    where
 } from 'firebase/firestore';
 
 import { db } from '@/firebase/firebase';
@@ -62,8 +67,10 @@ function CartPage() {
                         data.push(item);
 
                         totalPrice +=
-                            Number(item.price) *
+                            Number(item.price)
+                            *
                             Number(item.quantity);
+
                     });
 
                     setCartItems(data);
@@ -84,6 +91,77 @@ function CartPage() {
 
             try {
 
+                // GET LATEST STOCK FROM COLLECTIONS
+                const q = query(
+
+                    collection(
+                        db,
+                        'collections'
+                    ),
+
+                    where(
+                        'slug',
+                        '==',
+                        item.slug
+                    )
+
+                );
+
+                const querySnapshot =
+                    await getDocs(q);
+
+                if (querySnapshot.empty) {
+
+                    toast.error(
+                        'Product not found'
+                    );
+
+                    return;
+                }
+
+                const latestProduct =
+                    querySnapshot.docs[0].data();
+
+                const latestStock =
+                    Number(
+                        latestProduct.stock
+                    );
+
+                // STOCK LIMIT CHECK
+                if (
+
+                    Number(item.quantity)
+                    >=
+                    latestStock
+
+                ) {
+
+                    
+                    toast(
+                        `Only ${latestStock} items left in stock`,
+                        {
+                            icon: '🧡',
+                    
+                            duration: 2500,
+                    
+                            style: {
+                                borderRadius: '16px',
+                                background: '#fff7ed',
+                                color: '#c2410c',
+                                border: '1px solid #fdba74',
+                                padding: '16px',
+                                boxShadow:
+                                    '0 10px 30px rgba(0,0,0,0.08)',
+                                fontSize: '15px',
+                                fontWeight: '600'
+                            }
+                        }
+                    );
+
+                    return;
+                }
+
+                // UPDATE QUANTITY
                 await updateDoc(
 
                     doc(
@@ -94,7 +172,10 @@ function CartPage() {
 
                     {
                         quantity:
-                            item.quantity + 1
+                            Number(item.quantity) + 1,
+
+                        stock:
+                            latestStock
                     }
 
                 );
@@ -102,6 +183,10 @@ function CartPage() {
             } catch (error) {
 
                 console.log(error);
+
+                toast.error(
+                    'Something went wrong'
+                );
 
             }
         };
@@ -134,7 +219,7 @@ function CartPage() {
 
                         {
                             quantity:
-                                item.quantity - 1
+                                Number(item.quantity) - 1
                         }
 
                     );
@@ -176,6 +261,10 @@ function CartPage() {
                 setShowModal(false);
 
                 setSelectedProductId(null);
+
+                toast.success(
+                    'Product removed from cart'
+                );
 
             } catch (error) {
 
@@ -261,6 +350,15 @@ function CartPage() {
                                             ₹ {item.price}
                                         </p>
 
+                                        {/* STOCK */}
+                                        {/* <span className="stock_text">
+
+                                            Available Stock:
+                                            {' '}
+                                            {item.stock}
+
+                                        </span> */}
+
                                         {/* QUANTITY */}
                                         <div className="quantity_wrap">
 
@@ -279,12 +377,14 @@ function CartPage() {
                                             <button
                                                 onClick={() =>
                                                     increaseQuantity(item)
-                                                }
+                                                } 
                                             >
                                                 +
                                             </button>
 
                                         </div>
+
+                                       
 
                                         {/* DELETE */}
                                         <button
