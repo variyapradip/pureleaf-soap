@@ -29,7 +29,7 @@ function Header() {
                     </button>
 
                     <div className="nav_drop-list">
-                        <Link href="/" className="nav_drop-link">
+                        <Link href="/collections" className="nav_drop-link">
                             All Collection
                         </Link>
 
