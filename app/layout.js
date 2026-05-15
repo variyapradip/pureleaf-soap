@@ -1,7 +1,13 @@
 import "./globals.css";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import { Toaster } from 'react-hot-toast';
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
+
+import BootstrapClient from '@/components/BootstrapClient';
 
 import {
     Poppins,
@@ -13,19 +19,46 @@ import {
 
 const poppins = Poppins({
     subsets: ["latin"],
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+    weight: [
+        "100",
+        "200",
+        "300",
+        "400",
+        "500",
+        "600",
+        "700",
+        "800",
+        "900"
+    ],
     variable: "--font-poppins",
 });
 
 const roboto = Roboto({
     subsets: ["latin"],
-    weight: ["100", "300", "400", "500", "700", "900"],
+    weight: [
+        "100",
+        "300",
+        "400",
+        "500",
+        "700",
+        "900"
+    ],
     variable: "--font-roboto",
 });
 
 const robotoSlab = Roboto_Slab({
     subsets: ["latin"],
-    weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+    weight: [
+        "100",
+        "200",
+        "300",
+        "400",
+        "500",
+        "600",
+        "700",
+        "800",
+        "900"
+    ],
     variable: "--font-roboto-slab",
 });
 
@@ -42,13 +75,18 @@ const quintessential = Quintessential({
 });
 
 export const metadata = {
+
     title: "PureLeaf Soap",
+
     description:
         "Handmade herbal soaps crafted with natural ingredients for healthy glowing skin.",
+
 };
 
 export default function RootLayout({ children }) {
+
     return (
+
         <html
             lang="en"
             className={`
@@ -59,13 +97,30 @@ export default function RootLayout({ children }) {
                 ${quintessential.variable}
             `}
         >
+
             <body>
-            <Toaster position="top-right"
-                    reverseOrder={false}/>
-            
-            {children}
-            
+
+                {/* Bootstrap JS */}
+                <BootstrapClient />
+
+                {/* Toast */}
+                <Toaster
+                    position="top-right"
+                    reverseOrder={false}
+                />
+
+                {/* Header */}
+                <Header />
+
+                {/* Pages */}
+                {children}
+
+                {/* Footer */}
+                <Footer />
+
             </body>
+
         </html>
+
     );
 }
