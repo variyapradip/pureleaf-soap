@@ -60,10 +60,11 @@ export default function RootLayout({ children }) {
             `}
         >
             <body>
-            <Toaster />
-            <Header />
+            <Toaster position="top-right"
+                    reverseOrder={false}/>
+            
             {children}
-            <Footer />
+            
             </body>
         </html>
     );

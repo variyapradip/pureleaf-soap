@@ -62,13 +62,13 @@ function CollectionDetailPage({ params }) {
                     const querySnapshot =
                         await getDocs(q);
 
-                    querySnapshot.forEach((doc) => {
+                    querySnapshot.forEach((docItem) => {
 
                         const productData = {
 
-                            id: doc.id,
+                            id: docItem.id,
 
-                            ...doc.data()
+                            ...docItem.data()
 
                         };
 
@@ -121,7 +121,7 @@ function CollectionDetailPage({ params }) {
                 const querySnapshot =
                     await getDocs(q);
 
-                // PRODUCT ALREADY EXISTS
+                // PRODUCT EXISTS
                 if (!querySnapshot.empty) {
 
                     const existingDoc =
@@ -130,6 +130,37 @@ function CollectionDetailPage({ params }) {
                     const existingData =
                         existingDoc.data();
 
+                    // STOCK LIMIT CHECK
+                    if (
+
+                        Number(existingData.quantity)
+                        >=
+                        Number(product.stock)
+
+                    ) {
+
+                        toast(
+
+                            `Only ${product.stock} items available in stock`,
+
+                            {
+                                icon: '⚠️',
+
+                                style: {
+                                    borderRadius: '14px',
+                                    background: '#fff7ed',
+                                    color: '#ea580c',
+                                    border: '1px solid #fdba74',
+                                    padding: '14px 18px'
+                                }
+                            }
+
+                        );
+
+                        return;
+                    }
+
+                    // UPDATE QUANTITY
                     await updateDoc(
 
                         doc(
@@ -145,7 +176,7 @@ function CollectionDetailPage({ params }) {
 
                     );
 
-                    // CUSTOM TOAST
+                    // SUCCESS POPUP
                     toast((t) => (
 
                         <div className="cart_toast">
@@ -175,6 +206,33 @@ function CollectionDetailPage({ params }) {
                 // NEW PRODUCT
                 else {
 
+                    // STOCK CHECK
+                    if (
+                        Number(product.stock) <= 0
+                    ) {
+
+                        toast(
+
+                            'Out of stock',
+
+                            {
+                                icon: '⚠️',
+
+                                style: {
+                                    borderRadius: '14px',
+                                    background: '#fff7ed',
+                                    color: '#ea580c',
+                                    border: '1px solid #fdba74',
+                                    padding: '14px 18px'
+                                }
+                            }
+
+                        );
+
+                        return;
+                    }
+
+                    // ADD NEW PRODUCT
                     await addDoc(
 
                         collection(
@@ -187,12 +245,13 @@ function CollectionDetailPage({ params }) {
                             price: product.price,
                             image: product.image,
                             quantity: 1,
-                            slug: product.slug
+                            slug: product.slug,
+                            stock: product.stock
                         }
 
                     );
 
-                    // CUSTOM TOAST
+                    // SUCCESS POPUP
                     toast((t) => (
 
                         <div className="cart_toast">
@@ -274,6 +333,15 @@ function CollectionDetailPage({ params }) {
                         <h3>
                             ₹ {product.price}
                         </h3>
+
+                        {/* STOCK */}
+                        {/* <span className="stock_text">
+
+                            Available Stock:
+                            {' '}
+                            {product.stock}
+
+                        </span> */}
 
                         <p>
                             {product.description}

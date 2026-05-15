@@ -25,6 +25,11 @@ function CollectionsPage() {
     const [collections, setCollections] =
         useState([]);
 
+    // FILTER STATE
+    const [selectedCategory,
+        setSelectedCategory] =
+        useState('All');
+
     // FETCH COLLECTIONS
     useEffect(() => {
 
@@ -70,6 +75,38 @@ function CollectionsPage() {
 
     }, []);
 
+    // UNIQUE CATEGORIES
+    const categories = [
+
+        'All',
+
+        ...new Set(
+
+            collections.map(
+                (item) =>
+                    item.category
+            )
+
+        )
+
+    ];
+
+    // FILTERED PRODUCTS
+    const filteredCollections =
+
+        selectedCategory === 'All'
+
+            ? collections
+
+            : collections.filter(
+
+                (item) =>
+
+                    item.category ===
+                    selectedCategory
+
+            );
+
     // ADD TO CART
     const handleAddToCart =
         async (
@@ -77,12 +114,10 @@ function CollectionsPage() {
             product
         ) => {
 
-            // STOP LINK CLICK
             e.preventDefault();
 
             try {
 
-                // CHECK PRODUCT ALREADY EXISTS
                 const q = query(
 
                     collection(
@@ -110,7 +145,7 @@ function CollectionsPage() {
                     const existingData =
                         existingDoc.data();
 
-                    // STOCK LIMIT CHECK
+                    // STOCK LIMIT
                     if (
 
                         Number(existingData.quantity)
@@ -165,7 +200,7 @@ function CollectionsPage() {
                 // NEW PRODUCT
                 else {
 
-                    // STOCK CHECK
+                    // OUT OF STOCK
                     if (
                         Number(product.stock) <= 0
                     ) {
@@ -191,7 +226,7 @@ function CollectionsPage() {
                         return;
                     }
 
-                    // ADD NEW PRODUCT
+                    // ADD PRODUCT
                     await addDoc(
 
                         collection(
@@ -246,10 +281,39 @@ function CollectionsPage() {
 
                 </div>
 
+                {/* FILTER BUTTONS */}
+                <div className="filter_wrap">
+
+                    {categories.map((category) => (
+
+                        <button
+                            key={category}
+                            className={`filter_btn ${
+
+                                selectedCategory === category
+                                    ? 'active'
+                                    : ''
+
+                            }`}
+                            onClick={() =>
+                                setSelectedCategory(
+                                    category
+                                )
+                            }
+                        >
+
+                            {category}
+
+                        </button>
+
+                    ))}
+
+                </div>
+
                 {/* COLLECTION GRID */}
                 <div className="collections_grid">
 
-                    {collections.map((item) => (
+                    {filteredCollections.map((item) => (
 
                         <Link
                             key={item.id}
@@ -273,6 +337,12 @@ function CollectionsPage() {
                             {/* CONTENT */}
                             <div className="collection_content">
 
+                                <span className="category_badge">
+
+                                    {item.category}
+
+                                </span>
+
                                 <h3>
                                     {item.title}
                                 </h3>
@@ -285,9 +355,7 @@ function CollectionsPage() {
                                     ₹ {item.price}
                                 </h4>
 
-                              
-
-                                {/* BUTTONS */}
+                                {/* BUTTON */}
                                 <div className="collection_btns">
 
                                     <button

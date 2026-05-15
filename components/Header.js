@@ -6,6 +6,8 @@ import Link from 'next/link';
 
 import Image from 'next/image';
 
+import { usePathname } from 'next/navigation';
+
 import {
     collection,
     onSnapshot
@@ -14,6 +16,9 @@ import {
 import { db } from '@/firebase/firebase';
 
 function Header() {
+
+    const pathname =
+        usePathname();
 
     const [isSticky, setIsSticky] =
         useState(false);
@@ -90,11 +95,17 @@ function Header() {
     return (
 
         <header
-            className={`header ${
-                isSticky
-                    ? 'top_header'
-                    : ''
-            }`}
+            className={`
+                header
+                ${isSticky
+                        ? 'top_header'
+                        : ''
+                }
+                ${pathname === '/'
+                        ? 'home_header'
+                        : 'inner_header'
+                }
+            `}
         >
 
             {/* LEFT NAVIGATION */}

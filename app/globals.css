@@ -32,23 +32,30 @@ header {
   transition: all 0.3s;
 }
 .top_header .nav_link,
-.top_header .nav_drop-head{
+.top_header .nav_drop-head,
+.inner_header .nav_link,
+.inner_header .nav_drop-head{
   color: var(--gray);
   font-weight: 400;
 }
 .top_header .main_logo img,
-.top_header .cart_wrap img{
+.top_header .cart_wrap img,
+.inner_header .main_logo img,
+.inner_header .cart_wrap img{
   filter: invert(0);
 }
-.top_header{
+.top_header,
+.inner_header{
   background-color: #ffffffed !important;
   padding: 0 50px !important;
 }
-.top_header .cart_wrap .cart_badge{
+.top_header .cart_wrap .cart_badge,
+.inner_header .cart_wrap .cart_badge{
   background-color: var(--gray);
   color: var(--white);
 }
-.top_header .nav_drop-head{
+.top_header .nav_drop-head,
+.inner_header .nav_drop-head{
   padding: 21px 0;
 }
 .nav_drop {
@@ -657,7 +664,37 @@ padding: 60px;
   line-height: 1.7;
 }
 
+.filter_wrap{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  margin:40px 0;
+}
 
+.filter_btn{
+  border:none;
+  padding:12px 22px;
+  border-radius:40px;
+  background:#f5f5f5;
+  cursor:pointer;
+  transition:0.3s;
+  font-weight:500;
+}
+
+.filter_btn.active{
+  background:#000;
+  color:#fff;
+}
+
+.category_badge{
+  display:inline-block;
+  margin-bottom:12px;
+  padding:6px 14px;
+  border-radius:30px;
+  background:#f3efe8;
+  font-size:13px;
+  font-weight:600;
+}
 /* collection-section-css-end */
 
 /* product-detials-css-start */
@@ -1066,3 +1103,165 @@ padding: 60px;
 }
 
 /* feture-collection-css-end */
+
+/* admin-css-start */
+
+.admin_page{
+  display:flex;
+  min-height:100vh;
+}
+
+.admin_sidebar{
+  width:260px;
+  background:#111;
+  padding:40px 25px;
+}
+
+.admin_sidebar h2{
+  color:#fff;
+  margin-bottom:30px;
+}
+
+.admin_sidebar nav{
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+}
+
+.admin_sidebar a{
+  color:#fff;
+  text-decoration:none;
+}
+
+.admin_content{
+  flex:1;
+  padding:50px;
+}
+
+.admin_cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+  margin-top:40px;
+}
+
+.admin_card{
+  padding:30px;
+  border-radius:20px;
+  background:#f5f5f5;
+}
+
+.admin_form{
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+  max-width:600px;
+  margin-top:40px;
+}
+
+.admin_form input,
+.admin_form textarea{
+  width:100%;
+  padding:14px 18px;
+  border-radius:12px;
+  border:1px solid #ddd;
+}
+
+.admin_form button{
+  height:52px;
+  border:none;
+  border-radius:12px;
+  background:#111;
+  color:#fff;
+  cursor:pointer;
+}
+
+.admin_products{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px;
+  margin-top:40px;
+}
+
+.admin_product_card{
+  border:1px solid #eee;
+  padding:20px;
+  border-radius:20px;
+}
+
+.admin_product_card img{
+  width:100%;
+  height:260px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+.admin_product_card button{
+  width:100%;
+  height:48px;
+  border:none;
+  background:red;
+  color:#fff;
+  border-radius:12px;
+  margin-top:18px;
+  cursor:pointer;
+}
+.admin_login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f5f0;
+}
+
+.admin_login_box {
+  width: 420px;
+  background: #fff;
+  padding: 40px;
+  border-radius: 20px;
+}
+
+.admin_login_box form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin_login_box input,
+.admin_form input,
+.admin_form textarea {
+  width: 100%;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+}
+
+.admin_login_box button,
+.admin_form button,
+.admin_topbar button {
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  background: #1f2937;
+  color: #fff;
+  cursor: pointer;
+}
+
+.admin_dashboard {
+  padding: 60px;
+}
+
+.admin_topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.admin_form {
+  max-width: 700px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+/* admin-css-end */
