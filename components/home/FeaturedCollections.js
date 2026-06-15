@@ -279,13 +279,13 @@ function FeaturedCollections() {
                                 </p>
 
                                 {/* STOCK */}
-                                <span className="stock_text">
+                                {/* <span className="stock_text">
 
                                     Stock:
                                     {' '}
                                     {item.stock}
 
-                                </span>
+                                </span> */}
 
                                 {/* BUTTON */}
                                 <div className="featured_btns">

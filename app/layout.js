@@ -3,6 +3,7 @@ import "./globals.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import { Toaster } from 'react-hot-toast';
+import Script from 'next/script';
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
@@ -15,7 +16,15 @@ import {
     Roboto_Slab,
     Archivo_Black,
     Quintessential,
+    Playfair_Display,  // add this
 } from "next/font/google";
+
+const playfairDisplay = Playfair_Display({
+    subsets: ["latin"],
+    weight: ["400", "500", "600", "700", "800", "900"],
+    style: ["normal", "italic"],   // optional — include if you want italic variants
+    variable: "--font-playfair",
+});
 
 const poppins = Poppins({
     subsets: ["latin"],
@@ -88,15 +97,16 @@ export default function RootLayout({ children }) {
     return (
 
         <html
-            lang="en"
-            className={`
-                ${poppins.variable}
-                ${roboto.variable}
-                ${robotoSlab.variable}
-                ${archivoBlack.variable}
-                ${quintessential.variable}
-            `}
-        >
+        lang="en"
+        className={`
+            ${poppins.variable}
+            ${roboto.variable}
+            ${robotoSlab.variable}
+            ${archivoBlack.variable}
+            ${quintessential.variable}
+            ${playfairDisplay.variable}  
+        `}
+    >
 
             <body>
 
@@ -114,7 +124,10 @@ export default function RootLayout({ children }) {
 
                 {/* Pages */}
                 {children}
-
+                 <Script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    strategy="beforeInteractive"
+/> 
                 {/* Footer */}
                 <Footer />
 

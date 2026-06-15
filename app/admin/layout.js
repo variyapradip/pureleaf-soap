@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 
 import Link from 'next/link';
 
+// import Script from 'next/script';
+
 import { Toaster } from 'react-hot-toast';
 
 import {
@@ -120,6 +122,12 @@ function AdminLayout({ children }) {
                     position="top-right"
                 />
 
+                {/* RAZORPAY SCRIPT */}
+                {/* <Script
+    src="https://checkout.razorpay.com/v1/checkout.js"
+    strategy="beforeInteractive"
+/> */}
+
                 {children}
             </>
         );
@@ -127,120 +135,127 @@ function AdminLayout({ children }) {
 
     return (
 
-        <div className="admin_layout">
+        <>
 
-            {/* TOASTER */}
-            <Toaster
-                position="top-right"
-            />
+            {/* RAZORPAY SCRIPT */}
+          
 
-            {/* SIDEBAR */}
-            <aside className="admin_sidebar">
+            <div className="admin_layout">
 
-                <div className="admin_logo">
+                {/* TOASTER */}
+                <Toaster
+                    position="top-right"
+                />
 
-                    <h2>
-                        PureLeaf Admin
-                    </h2>
+                {/* SIDEBAR */}
+                <aside className="admin_sidebar">
 
-                </div>
+                    <div className="admin_logo">
 
-                <nav className="admin_nav">
+                        <h2>
+                            PureLeaf Admin
+                        </h2>
 
-                    <Link
-                        href="/admin/dashboard"
-                        className={`admin_link ${
-                            pathname === '/admin/dashboard'
-                                ? 'active'
-                                : ''
-                        }`}
-                    >
-                        Dashboard
-                    </Link>
+                    </div>
 
-                    <Link
-                        href="/admin/products"
-                        className={`admin_link ${
-                            pathname === '/admin/products'
-                                ? 'active'
-                                : ''
-                        }`}
-                    >
-                        Products
-                    </Link>
+                    <nav className="admin_nav">
 
-                    <Link
-                        href="/admin/orders"
-                        className={`admin_link ${
-                            pathname === '/admin/orders'
-                                ? 'active'
-                                : ''
-                        }`}
-                    >
-                        Orders
-                    </Link>
+                        <Link
+                            href="/admin/dashboard"
+                            className={`admin_link ${
+                                pathname === '/admin/dashboard'
+                                    ? 'active'
+                                    : ''
+                            }`}
+                        >
+                            Dashboard
+                        </Link>
 
-                    <Link
-                        href="/admin/customers"
-                        className={`admin_link ${
-                            pathname === '/admin/customers'
-                                ? 'active'
-                                : ''
-                        }`}
-                    >
-                        Customers
-                    </Link>
+                        <Link
+                            href="/admin/products"
+                            className={`admin_link ${
+                                pathname === '/admin/products'
+                                    ? 'active'
+                                    : ''
+                            }`}
+                        >
+                            Products
+                        </Link>
 
-                    <Link
-                        href="/admin/categories"
-                        className={`admin_link ${
-                            pathname === '/admin/categories'
-                                ? 'active'
-                                : ''
-                        }`}
-                    >
-                        Categories
-                    </Link>
+                        <Link
+                            href="/admin/orders"
+                            className={`admin_link ${
+                                pathname === '/admin/orders'
+                                    ? 'active'
+                                    : ''
+                            }`}
+                        >
+                            Orders
+                        </Link>
 
-                    <Link
-                        href="/admin/banners"
-                        className={`admin_link ${
-                            pathname === '/admin/banners'
-                                ? 'active'
-                                : ''
-                        }`}
-                    >
-                        Banners
-                    </Link>
+                        <Link
+                            href="/admin/customers"
+                            className={`admin_link ${
+                                pathname === '/admin/customers'
+                                    ? 'active'
+                                    : ''
+                            }`}
+                        >
+                            Customers
+                        </Link>
 
-                </nav>
+                        <Link
+                            href="/admin/categories"
+                            className={`admin_link ${
+                                pathname === '/admin/categories'
+                                    ? 'active'
+                                    : ''
+                            }`}
+                        >
+                            Categories
+                        </Link>
 
-                {/* ADMIN INFO */}
-                <div className="admin_bottom">
+                        <Link
+                            href="/admin/banners"
+                            className={`admin_link ${
+                                pathname === '/admin/banners'
+                                    ? 'active'
+                                    : ''
+                            }`}
+                        >
+                            Banners
+                        </Link>
 
-                    <p>
-                        {adminUser?.email}
-                    </p>
+                    </nav>
 
-                    <button
-                        onClick={handleLogout}
-                        className="logout_btn"
-                    >
-                        Logout
-                    </button>
+                    {/* ADMIN INFO */}
+                    <div className="admin_bottom">
 
-                </div>
+                        <p>
+                            {adminUser?.email}
+                        </p>
 
-            </aside>
+                        <button
+                            onClick={handleLogout}
+                            className="logout_btn"
+                        >
+                            Logout
+                        </button>
 
-            {/* MAIN CONTENT */}
-            <main className="admin_main">
+                    </div>
 
-                {children}
+                </aside>
 
-            </main>
+                {/* MAIN CONTENT */}
+                <main className="admin_main">
 
-        </div>
+                    {children}
+
+                </main>
+
+            </div>
+
+        </>
 
     );
 }

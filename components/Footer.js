@@ -146,6 +146,7 @@ function Footer() {
                                 alt="logo"
                                 width={180}
                                 height={60}
+                                className="footerlogo"
                             />
 
                         )}

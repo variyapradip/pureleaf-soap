@@ -91,7 +91,6 @@ function CartPage() {
 
             try {
 
-                // GET LATEST STOCK FROM COLLECTIONS
                 const q = query(
 
                     collection(
@@ -136,14 +135,13 @@ function CartPage() {
 
                 ) {
 
-                    
                     toast(
                         `Only ${latestStock} items left in stock`,
                         {
                             icon: '🧡',
-                    
+
                             duration: 2500,
-                    
+
                             style: {
                                 borderRadius: '16px',
                                 background: '#fff7ed',
@@ -273,6 +271,168 @@ function CartPage() {
             }
         };
 
+    // RAZORPAY PAYMENT
+    // RAZORPAY PAYMENT
+const handlePayment = async () => {
+
+    try {
+
+        const response = await fetch(
+            '/api/razorpay',
+            {
+                method: 'POST',
+
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify({
+                    amount: total
+                })
+            }
+        );
+
+        const order =
+            await response.json();
+
+        // DEBUG ORDER
+        console.log(
+            'ORDER DATA:',
+            order
+        );
+
+        const options = {
+
+            key:
+                process.env
+                    .NEXT_PUBLIC_RAZORPAY_KEY,
+
+            amount:
+                order.amount,
+
+            currency:
+                order.currency,
+
+            name:
+                'Pureleaf Soap',
+
+            description:
+                'Herbal Soap Order',
+
+            image:
+                '/logo.png',
+
+            order_id:
+                order.id,
+
+            handler:
+                async function (
+                    response
+                ) {
+
+                    console.log(
+                        'PAYMENT SUCCESS:',
+                        response
+                    );
+
+                    toast.success(
+                        'Payment Successful'
+                    );
+
+                    // CLEAR CART
+                    for (const item of cartItems) {
+
+                        await deleteDoc(
+
+                            doc(
+                                db,
+                                'cart',
+                                item.id
+                            )
+
+                        );
+
+                    }
+
+                },
+
+            prefill: {
+
+                name:
+                    'Pureleaf Customer',
+
+                email:
+                    'demo@gmail.com',
+
+                contact:
+                    '9999999999'
+
+            },
+
+            notes: {
+
+                address:
+                    'Pureleaf Soap Store'
+
+            },
+
+            theme: {
+                color: '#4e3524'
+            },
+
+            modal: {
+
+                ondismiss: function () {
+
+                    toast.error(
+                        'Payment Cancelled'
+                    );
+
+                }
+
+            }
+
+        };
+
+        // DEBUG RAZORPAY
+        console.log(
+            'RAZORPAY SDK:',
+            window.Razorpay
+        );
+
+        // CHECK SDK
+        if (!window.Razorpay) {
+
+            toast.error(
+                'Razorpay SDK Failed To Load'
+            );
+
+            return;
+        }
+
+        // OPEN PAYMENT
+        const razorpay =
+            new window.Razorpay(
+                options
+            );
+
+        razorpay.open();
+
+    } catch (error) {
+
+        console.log(
+            'PAYMENT ERROR:',
+            error
+        );
+
+        toast.error(
+            'Payment Failed'
+        );
+
+    }
+
+};
+
     return (
 
         <section className="cart_page">
@@ -350,15 +510,6 @@ function CartPage() {
                                             ₹ {item.price}
                                         </p>
 
-                                        {/* STOCK */}
-                                        {/* <span className="stock_text">
-
-                                            Available Stock:
-                                            {' '}
-                                            {item.stock}
-
-                                        </span> */}
-
                                         {/* QUANTITY */}
                                         <div className="quantity_wrap">
 
@@ -377,14 +528,12 @@ function CartPage() {
                                             <button
                                                 onClick={() =>
                                                     increaseQuantity(item)
-                                                } 
+                                                }
                                             >
                                                 +
                                             </button>
 
                                         </div>
-
-                                       
 
                                         {/* DELETE */}
                                         <button
@@ -427,7 +576,9 @@ function CartPage() {
 
                             </div>
 
-                            <button>
+                            <button
+                                onClick={handlePayment}
+                            >
                                 Proceed To Checkout
                             </button>
 
