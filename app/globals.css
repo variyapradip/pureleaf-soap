@@ -44,6 +44,9 @@ header {
 .inner_header .cart_wrap img{
   filter: invert(0);
 }
+.top_header .burger_line{
+  background: #000 !important;
+}
 .top_header,
 .inner_header{
   background-color: #ffffffed !important;
@@ -1542,7 +1545,9 @@ padding: 60px;
     transition: transform 0.25s ease, opacity 0.25s ease;
     transform-origin: center;
 }
-
+.home_header .burger_line{
+  background: rgb(238 238 238) !important;
+}
 /* Animate to X when open */
 .burger_btn--open .burger_line:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
