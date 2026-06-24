@@ -348,7 +348,7 @@ function CollectionsPage() {
                                 {item.title}
                                 </h3>
 
-                                <p>
+                                <p> 
                                 {item.description}
                                 </p>
 

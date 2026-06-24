@@ -244,7 +244,9 @@ function Footer() {
                 </div>
 
             </div>
-
+                         <div className="container">
+                         <span className="copy_right">2026 PureLeaf Soap. All Rights Reserved.</span>
+                         </div>
         </footer>
     );
 }
