@@ -10,42 +10,42 @@ const ingredients = [
         origin: 'West Africa',
         benefit: 'Deep moisture that lasts all day without clogging pores.',
         icon: '🌿',
-        color: '#e8dcc8',
+        color: '#f5f5f5',
     },
     {
         name: 'Neem Oil',
         origin: 'India',
         benefit: 'Ancient antibacterial that calms irritated, acne-prone skin.',
         icon: '🍃',
-        color: '#d4e6c3',
+        color: '#eeeeee',
     },
     {
         name: 'Turmeric',
         origin: 'Kerala, India',
         benefit: 'Brightens skin tone and reduces dark spots naturally.',
         icon: '🌾',
-        color: '#f2e0a8',
+        color: '#f5f5f5',
     },
     {
         name: 'Coconut Oil',
         origin: 'Kerala, India',
         benefit: 'Rich lather that cleanses deeply while keeping skin soft.',
         icon: '🥥',
-        color: '#dff0e8',
+        color: '#eeeeee',
     },
     {
         name: 'Lavender',
         origin: 'Himalayan Foothills',
         benefit: 'Soothes the senses and gently heals sensitive skin.',
         icon: '💜',
-        color: '#e8dff0',
+        color: '#f5f5f5',
     },
     {
         name: 'Activated Charcoal',
         origin: 'Coconut Shell',
         benefit: 'Draws out impurities and unclogs pores like a magnet.',
         icon: '🖤',
-        color: '#d9d9d9',
+        color: '#eeeeee',
     },
 ];
 
@@ -200,6 +200,7 @@ export default function AboutPage() {
                 </section>
 
             </main>
+
 
        
         </>
