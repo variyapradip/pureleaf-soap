@@ -1546,7 +1546,7 @@ padding: 60px;
     transform-origin: center;
 }
 .home_header .burger_line{
-  background: rgb(238 238 238) !important;
+  background: rgb(238 238 238) ;
 }
 /* Animate to X when open */
 .burger_btn--open .burger_line:nth-child(1) {
