@@ -1664,8 +1664,8 @@ padding: 60px;
   /* ── BASE ── */
   .about_page {
     font-family: 'Georgia', serif;
-    color: #2c2416;
-    background: #faf7f2;
+    color: #111111;
+    background: #ffffff;
     overflow-x: hidden;
 }
 
@@ -1688,7 +1688,7 @@ padding: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(160deg, #eef5e8 0%, #faf7f2 55%, #f5ede0 100%);
+    background: #f9f9f9;
     text-align: center;
     padding: 120px 24px 80px;
     overflow: hidden;
@@ -1697,7 +1697,7 @@ padding: 60px;
 .hero_leaf {
     position: absolute;
     font-size: 120px;
-    opacity: 0.12;
+    opacity: 0.06;
     pointer-events: none;
     user-select: none;
 }
@@ -1711,12 +1711,12 @@ padding: 60px;
 }
 
 .hero_eyebrow {
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #7a9e6e;
+    color: #888888;
     margin: 0 0 20px;
 }
 
@@ -1724,28 +1724,29 @@ padding: 60px;
     font-size: clamp(2.4rem, 6vw, 4.2rem);
     font-weight: 400;
     line-height: 1.15;
+    font-family: var(--font-playfair), serif;
     margin: 0 0 24px;
-    color: #1e1a0f;
+    color: #111111;
 }
 .hero_title em {
     font-style: italic;
-    color: #5a8a4a;
+    color: #333333;
 }
 
 .hero_sub {
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 1rem;
     line-height: 1.8;
-    color: #5a5040;
+    color: #666666;
     margin: 0 0 36px;
 }
 
 .hero_cta {
     display: inline-block;
     padding: 14px 36px;
-    background: #4a7a3a;
-    color: #fff;
-    font-family: sans-serif;
+    background: #111111;
+    color: #ffffff;
+   font-family: "Poppins", sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.06em;
@@ -1754,7 +1755,7 @@ padding: 60px;
     transition: background 0.2s ease, transform 0.2s ease;
 }
 .hero_cta:hover {
-    background: #3a6a2a;
+    background: #333333;
     transform: translateY(-2px);
 }
 
@@ -1764,7 +1765,7 @@ padding: 60px;
     left: 50%;
     transform: translateX(-50%);
     font-size: 1.4rem;
-    color: #7a9e6e;
+    color: #aaaaaa;
     animation: bob 2s ease-in-out infinite;
 }
 @keyframes bob {
@@ -1779,26 +1780,26 @@ padding: 60px;
     justify-content: center;
     flex-wrap: wrap;
     gap: 0;
-    background: #3a5c2e;
+    background: #111111;
     padding: 16px 24px;
 }
 .promise_item {
     display: flex;
     align-items: center;
     gap: 8px;
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 0.78rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #d4e8c2;
+    color: #cccccc;
     padding: 6px 20px;
 }
 .promise_dot {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: #7ab85a;
+    background: #ffffff;
     flex-shrink: 0;
 }
 
@@ -1809,8 +1810,8 @@ padding: 60px;
     padding: 80px 24px;
 }
 .intro_card {
-    background: #fff;
-    border: 1px solid #e8dfc8;
+    background: #ffffff;
+    border: 1px solid #e0e0e0;
     border-radius: 4px;
     padding: 48px 52px;
     text-align: center;
@@ -1824,7 +1825,7 @@ padding: 60px;
 .intro_text {
     font-size: 1.05rem;
     line-height: 1.85;
-    color: #3e3020;
+    color: #444444;
     margin: 0 0 16px;
 }
 .intro_text:last-child { margin-bottom: 0; }
@@ -1840,24 +1841,25 @@ padding: 60px;
     margin-bottom: 56px;
 }
 .section_eyebrow {
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: #7a9e6e;
+    color: #888888;
     margin: 0 0 12px;
 }
 .section_title {
     font-size: clamp(1.8rem, 4vw, 2.8rem);
     font-weight: 400;
     margin: 0 0 16px;
-    color: #1e1a0f;
+    color: #111111;
+    font-family: var(--font-playfair), serif;
 }
 .section_sub {
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 0.95rem;
-    color: #7a6a50;
+    color: #777777;
     margin: 0;
 }
 
@@ -1868,8 +1870,9 @@ padding: 60px;
 }
 
 .ingredient_card {
-    background: var(--card-bg, #f0ece4);
+    background: var(--card-bg, #f5f5f5);
     border-radius: 4px;
+    border: 1px solid #e8e8e8;
     padding: 32px 28px;
     display: flex;
     gap: 20px;
@@ -1878,7 +1881,7 @@ padding: 60px;
 }
 .ingredient_card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.10);
 }
 .ingredient_icon {
     font-size: 2rem;
@@ -1890,29 +1893,30 @@ padding: 60px;
     font-size: 1.05rem;
     font-weight: 600;
     margin: 0 0 4px;
-    color: #1e1a0f;
+    color: #111111;
+    font-family: var(--font-playfair), serif;
 }
 .ingredient_origin {
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 0.72rem;
     font-weight: 600;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #7a8a6a;
+    color: #888888;
     margin: 0 0 10px;
 }
 .ingredient_benefit {
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 0.875rem;
     line-height: 1.6;
-    color: #4a3e2c;
+    color: #555555;
     margin: 0;
 }
 
 /* ── CRAFT ── */
 .craft_section {
-    background: #2c3e22;
-    color: #e8f0d8;
+    background: #111111;
+    color: #eeeeee;
     padding: 80px 24px;
     display: flex;
     align-items: center;
@@ -1923,16 +1927,17 @@ padding: 60px;
 .craft_text {
     max-width: 440px;
 }
-.craft_section .section_eyebrow { color: #8aba6a; }
+.craft_section .section_eyebrow { color: #888888; }
 .craft_section .section_title {
-    color: #f0ead8;
+    color: #ffffff;
+    font-family: var(--font-playfair), serif;
     margin-bottom: 24px;
 }
 .craft_body {
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 0.95rem;
     line-height: 1.8;
-    color: #b8c8a8;
+    color: #aaaaaa;
     margin: 0 0 16px;
 }
 
@@ -1945,28 +1950,28 @@ padding: 60px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    border-left: 3px solid #5a8a4a;
+    border-left: 3px solid #555555;
     padding-left: 20px;
 }
 .stat_number {
     font-size: 2.8rem;
     font-weight: 400;
-    color: #a8d878;
+    color: #ffffff;
     line-height: 1;
     margin-bottom: 4px;
 }
 .stat_label {
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 0.8rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: #7a9a6a;
+    color: #888888;
 }
 
 /* ── CTA BANNER ── */
 .cta_banner {
-    background: linear-gradient(135deg, #eef5e8 0%, #f5ede0 100%);
+    background: #f2f2f2;
     padding: 100px 24px;
     text-align: center;
 }
@@ -1975,20 +1980,20 @@ padding: 60px;
     font-size: clamp(1.6rem, 4vw, 2.4rem);
     font-weight: 400;
     margin: 0 0 16px;
-    color: #1e1a0f;
+    color: #111111;
 }
 .cta_sub {
-    font-family: sans-serif;
+   font-family: "Poppins", sans-serif;
     font-size: 1rem;
-    color: #7a6a50;
+    color: #666666;
     margin: 0 0 36px;
 }
 .cta_btn {
     display: inline-block;
     padding: 16px 44px;
-    background: #4a7a3a;
-    color: #fff;
-    font-family: sans-serif;
+    background: #111111;
+    color: #ffffff;
+   font-family: "Poppins", sans-serif;
     font-size: 0.875rem;
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -1997,7 +2002,7 @@ padding: 60px;
     transition: background 0.2s ease, transform 0.2s ease;
 }
 .cta_btn:hover {
-    background: #3a6a2a;
+    background: #333333;
     transform: translateY(-2px);
 }
 
