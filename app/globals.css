@@ -513,6 +513,12 @@ text-transform: uppercase;
 
 }
 
+@media(min-width: 1025px){
+  .burger_btn{
+    display: none !important;
+  }
+}
+
 @media(max-width: 767px) {
  
   .section_heading h1 {
