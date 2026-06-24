@@ -71,7 +71,16 @@ function Header() {
                     </div>
                     <Link href="/" className="nav_link">About</Link>
                 </div>
-
+                <button
+                        className={`burger_btn ${menuOpen ? 'burger_btn--open' : ''}`}
+                        onClick={() => setMenuOpen(!menuOpen)}
+                        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={menuOpen}
+                    >
+                        <span className="burger_line" />
+                        <span className="burger_line" />
+                        <span className="burger_line" />
+                    </button>
                 {/* LOGO */}
                 <div className="nav_center">
                     <Link href="/" className="main_logo">
@@ -117,16 +126,7 @@ function Header() {
                         <span className="cart_badge">{cartCount}</span>
                     </Link>
 
-                    <button
-                        className={`burger_btn ${menuOpen ? 'burger_btn--open' : ''}`}
-                        onClick={() => setMenuOpen(!menuOpen)}
-                        aria-label={menuOpen ? 'Close menu' : 'Open menu'}
-                        aria-expanded={menuOpen}
-                    >
-                        <span className="burger_line" />
-                        <span className="burger_line" />
-                        <span className="burger_line" />
-                    </button>
+                   
                 </div>
             </header>
 
