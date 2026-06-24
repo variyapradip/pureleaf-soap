@@ -337,23 +337,25 @@ function CollectionsPage() {
                             {/* CONTENT */}
                             <div className="collection_content">
 
-                                <span className="category_badge">
+                               <div className='collection_inner-deta'>
+                               <span className="category_badge">
 
-                                    {item.category}
+                                {item.category}
 
                                 </span>
 
                                 <h3>
-                                    {item.title}
+                                {item.title}
                                 </h3>
 
                                 <p>
-                                    {item.description}
+                                {item.description}
                                 </p>
 
                                 <h4>
-                                    ₹ {item.price}
+                                ₹ {item.price}
                                 </h4>
+                               </div>
 
                                 {/* BUTTON */}
                                 <div className="collection_btns">
