@@ -542,7 +542,7 @@ const handlePayment = async () => {
                                                 openDeleteModal(item.id)
                                             }
                                         >
-                                            Remove
+                                            Delete
                                         </button>
 
                                     </div>
