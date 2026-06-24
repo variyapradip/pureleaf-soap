@@ -1571,6 +1571,7 @@ padding: 60px;
 
 .mobile_drawer--open {
     transform: translateX(0);
+    z-index: 9999;
 }
 
 /* ── Drawer header ── */
