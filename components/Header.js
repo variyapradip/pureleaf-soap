@@ -69,7 +69,7 @@ function Header() {
                             <Link href="/" className="nav_drop-link">Personal Soap</Link>
                         </div>
                     </div>
-                    <Link href="/" className="nav_link">About</Link>
+                    <Link href="/about" className="nav_link">About</Link>
                 </div>
                 <button
                         className={`burger_btn ${menuOpen ? 'burger_btn--open' : ''}`}
@@ -169,7 +169,7 @@ function Header() {
 
                     <div className="drawer_divider" />
 
-                    <Link href="/" className="drawer_link" onClick={() => setMenuOpen(false)}>About</Link>
+                    <Link href="/about" className="drawer_link" onClick={() => setMenuOpen(false)}>About</Link>
                     <Link href="/" className="drawer_link" onClick={() => setMenuOpen(false)}>Connect</Link>
                     <Link href="/" className="drawer_link" onClick={() => setMenuOpen(false)}>Account</Link>
                 </div>
