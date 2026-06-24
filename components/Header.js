@@ -175,8 +175,7 @@ function Header() {
                 </div>
             </nav>
 
-            {/* SCOPED STYLES */}
-            
+           
         </>
     );
 }
